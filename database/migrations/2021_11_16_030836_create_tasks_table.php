@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('ipaddress');
+            $table->string('ipaddress')->default('127.0.0.1');
             $table->string('label');
             $table->text('details'); 
             $table->timestamps();
