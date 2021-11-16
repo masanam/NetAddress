@@ -18,10 +18,10 @@ class AuthController extends BaseController
             $success['token'] =  $auth->createToken('LaravelSanctumAuth')->plainTextToken; 
             $success['name'] =  $auth->name;
    
-            $servParam = $this->getRequest()->getServer();
+            // $servParam = $this->getRequest()->getServer();
             $user = User::where('email', $request->email)->first();
             $userid=User::findOrFail($user->id);
-            $userid->ipaddress = $servParam->get('REMOTE_ADDR');
+            $userid->ipaddress = $_SERVER['REMOTE_ADDR'];
             $userid->save();
 
             return $this->handleResponse($success, 'User logged-in!');

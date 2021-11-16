@@ -31,12 +31,12 @@ class TaskController extends BaseController
             return $this->handleError($validator->errors());       
         }
 
-        $servParam = $this->getRequest()->getServer();
+        // $servParam = $this->getRequest()->getServer();
         $task = new Task();
         $task->name = $input['name'];
         $task->details = $input['name'];
         $task->label = $input['label'];
-        $task->ipaddress = $servParam->get('REMOTE_ADDR');
+        $task->ipaddress = $_SERVER['REMOTE_ADDR'];
         $task->save();
         
         return $this->handleResponse(new TaskResource($task), 'Task created!');
