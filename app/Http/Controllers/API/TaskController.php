@@ -24,12 +24,20 @@ class TaskController extends BaseController
         $input = $request->all();
         $validator = Validator::make($input, [
             'name' => 'required',
-            'details' => 'required'
+            'details' => 'required',
+            'label' => 'required'
         ]);
         if($validator->fails()){
             return $this->handleError($validator->errors());       
         }
-        $task = Task::create($input);
+
+        $task = new Task();
+        $task->name = $input['name'];
+        $task->details = $input['name'];
+        $task->label = $input['label'];
+        $task->ipaddress = $_SERVER['REMOTE_ADDR'];
+        $task->save();
+        
         return $this->handleResponse(new TaskResource($task), 'Task created!');
     }
 
@@ -58,7 +66,9 @@ class TaskController extends BaseController
         }
 
         $task->name = $input['name'];
-        $task->details = $input['details'];
+        $task->details = $input['name'];
+        $task->label = $input['label'];
+        $task->ipaddress = $_SERVER['REMOTE_ADDR'];
         $task->save();
         
         return $this->handleResponse(new TaskResource($task), 'Task successfully updated!');

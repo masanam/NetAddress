@@ -13,7 +13,7 @@ class Task extends Model
         'name', 
         'details',
         'ipaddress', 
-        'alias',
+        'label',
     ];    
 
 }

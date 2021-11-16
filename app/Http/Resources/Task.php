@@ -19,7 +19,7 @@ class Task extends JsonResource
             'name' => $this->name,
             'details' => $this->details,
             'ipaddress' => $this->ipaddress,
-            'alias' => $this->alias,
+            'label' => $this->label,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];
